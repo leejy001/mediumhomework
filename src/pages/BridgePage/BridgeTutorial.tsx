@@ -4,34 +4,34 @@ import styled, {css, keyframes} from "styled-components"
 function BridgeTutorial() {
     const [current, setCurrent] = useState<number>(1)
     return (
-        <AsideContainer>
-            <AsideItem isCurrent={current === 1}>
+        <TutorialContainer>
+            <TutorialItem isCurrent={current === 1}>
                 <strong>1</strong>
                 <ul>
                     <li>Select a coin to convert.</li>
                 </ul>
-            </AsideItem>
-            <AsideItem isCurrent={current === 2}>
+            </TutorialItem>
+            <TutorialItem isCurrent={current === 2}>
                 <strong>2</strong>
                 <ul>
                     <li>Select Chains and Connect a Wallet. <br/> Both From Wallet and To wallet should be connected.</li>
                 </ul>
-            </AsideItem>
-            <AsideItem isCurrent={current === 3}>
+            </TutorialItem>
+            <TutorialItem isCurrent={current === 3}>
                 <strong>3</strong>
                 <ul>
                     <li>Enter amount and click convert button. <br/> Follow guidance and Proceed approval process.</li>
                 </ul>
-            </AsideItem>
-            <AsideItem isCurrent={current === 4}>
+            </TutorialItem>
+            <TutorialItem isCurrent={current === 4}>
                 <strong>4</strong>
                 <ul>
                     <li>Confirm transaction in your From wallet.</li>
                     <li>Converting coin please wait a moment.</li>
                     <li>Confirm transaction in your To wallet.</li>
                 </ul>
-            </AsideItem>
-        </AsideContainer>
+            </TutorialItem>
+        </TutorialContainer>
     )
 }
 
@@ -54,12 +54,13 @@ const pulse = keyframes`
     }
 `
 
-const AsideContainer = styled.aside`
+const TutorialContainer = styled.aside`
+    padding: 0 8px;
     display: flex;
     flex-direction: column;
 `
 
-const AsideItem = styled.div<{isCurrent: boolean}>`
+const TutorialItem = styled.div<{isCurrent: boolean}>`
     position: relative;
     width: 238px;
     padding: 24px;

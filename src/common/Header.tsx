@@ -22,7 +22,7 @@ function Header () {
                 <NavLink select={(path === '/history').toString()} to="/history">History</NavLink>
             </NavSection>
             <ButtonSection>
-                <ImageButton>Connect Wallet</ImageButton>
+                <ImageButton disabled>Connect Wallet</ImageButton>
             </ButtonSection>
         </HaederContainer>
     )
@@ -89,5 +89,9 @@ const ImageButton = styled.button`
     font-weight: normal;
     padding-left: 30px;
     margin: 0px;
-    opacity: 0.5;
+    :disabled {
+        cursor: default;
+        opacity: 0.5;
+        pointer-events: none;
+    }
 `

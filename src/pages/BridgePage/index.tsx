@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Contianer from "../../common/Container";
+import BridgeMain from "./BridgeMain";
 import BridgeTutorial from "./BridgeTutorial";
 
 function Index() {
@@ -8,6 +9,7 @@ function Index() {
             <MainTitle><span>Opening a new way between cryptocurrencies.</span></MainTitle>
             <BridgeInfoWrapper>
                 <BridgeTutorial />
+                <BridgeMain />
             </BridgeInfoWrapper>
         </Contianer>
     )
@@ -29,7 +31,7 @@ const MainTitle = styled.div`
             content: "";
             position: absolute;
             left: 0;
-            bottom: 4px;
+            bottom: 1px;
             width: 100%;
             height: 16px;
             background: ${({theme}) => theme.color.COLOR_DARK_GREEN};
