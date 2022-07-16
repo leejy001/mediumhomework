@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
+import { fadeInDown } from '../style/Animation'
 
 function Header () {
     const location = useLocation()
@@ -37,6 +38,7 @@ const HaederContainer = styled.header`
     justify-content: space-between;
     height: 90px;
     width: 100%;
+    animation: ${fadeInDown} 0.5s;
 `
 
 const NavSection = styled.section`

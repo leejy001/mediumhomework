@@ -1,5 +1,6 @@
 import { useState } from "react"
-import styled, {css, keyframes} from "styled-components"
+import styled, {css} from "styled-components"
+import { fadeInRight, pulse } from "../../style/Animation"
 
 function BridgeTutorial() {
     const [current, setCurrent] = useState<number>(1)
@@ -37,27 +38,12 @@ function BridgeTutorial() {
 
 export default BridgeTutorial
 
-const pulse = keyframes`
-    0% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-    }
-
-    50% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1);
-    }
-
-    100% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-    }
-`
-
 const TutorialContainer = styled.aside`
     padding: 0 8px;
     display: flex;
     flex-direction: column;
+    animation-delay: 100ms;
+    animation: ${fadeInRight} 2s ease;
 `
 
 const TutorialItem = styled.div<{isCurrent: boolean}>`
@@ -67,9 +53,7 @@ const TutorialItem = styled.div<{isCurrent: boolean}>`
     margin-right: 16px;
     background: ${({theme}) => theme.color.COLOR_DARK_GREEN};
     border-radius: 8px;
-    color: ${({theme}) => theme.color.COLOR_LIGHT_GREEN};
     strong {
-        animation-name: effectPoing;
         position: absolute;
         top: 50%;
         left: -14px;
@@ -106,9 +90,11 @@ const TutorialItem = styled.div<{isCurrent: boolean}>`
     }
     li {
         ${(props) => props.isCurrent ? css`
+            color: white;
             font-size: 15px;
-            font-wegiht: 700;
+            font-wegiht: bolder;
         ` : css`
+            color: ${({theme}) => theme.color.COLOR_LIGHT_GREEN};
             font-size: 13px;
             font-wegiht: normal;
         ` }

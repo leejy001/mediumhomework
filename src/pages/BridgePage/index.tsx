@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Contianer from "../../common/Container";
+import { fadeInUp } from "../../style/Animation";
 import BridgeMain from "./BridgeMain";
 import BridgeTutorial from "./BridgeTutorial";
 
@@ -20,6 +21,7 @@ export default Index;
 const MainTitle = styled.div`
     padding: 0 16px;
     margin-bottom: 32px; 
+    animation: ${fadeInUp} 2s ease;
     span {
         position: relative;
         margin-left: 262px;

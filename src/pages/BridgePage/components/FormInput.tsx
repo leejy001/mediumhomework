@@ -24,6 +24,7 @@ const FormInputContainer = styled.div`
 `
 
 const FormTitle = styled.span`
+    flex-shrink: 0;
     width: 119px;
     line-height: 58px;
 `
