@@ -31,13 +31,12 @@ function Header () {
 export default Header
 
 const HaederContainer = styled.header`
+    position: fixed;
     padding: 20px 28px;
     display: flex;
     justify-content: space-between;
     height: 90px;
-    section {
-        width: 100%;
-    }
+    width: 100%;
 `
 
 const NavSection = styled.section`

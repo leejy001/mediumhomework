@@ -15,17 +15,18 @@ export default createGlobalStyle`
     height: 100%;
   }
 
+  #root {
+    background: linear-gradient(90deg, rgba(45, 80, 22, 0.8) 0%, rgba(90, 160, 44, 0.85) 35%, rgba(170, 222, 135, 0.8) 100%);
+  }
+
   body {
     background: url('/assets/bg4.0eedf2cc.png') no-repeat fixed center/cover;
   }
-  
-  main {
-    height: 100vh;
-    margin: auto;
-    padding-top: 50px;
-    background: linear-gradient(90deg, rgba(45, 80, 22, 0.8) 0%, rgba(90, 160, 44, 0.85) 35%, rgba(170, 222, 135, 0.8) 100%);
+
+  ul, li {
+    list-style: none;
   }
-  
+
   p {
     margin: 0;
   } 
