@@ -11,7 +11,6 @@ function Tab () {
 export default Tab
 
 const TabContainer = styled.div`
-    color: #000000;
     background-color: #f5f5f5;
     z-index: 1000;
     height: 50px;

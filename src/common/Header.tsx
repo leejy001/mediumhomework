@@ -18,8 +18,8 @@ function Header () {
         <HaederContainer>
             <NavSection>
                 <Link to="/"><img src="/assets/kstadium-beta-logo.4be04553.svg" alt="kstadium logo" width={225} height={44}/></Link>
-                <NavLink ispath={(path === '/bridge').toString()} to="/bridge">Bridge</NavLink>
-                <NavLink ispath={(path === '/history').toString()} to="/history">History</NavLink>
+                <NavLink select={(path === '/bridge').toString()} to="/bridge">Bridge</NavLink>
+                <NavLink select={(path === '/history').toString()} to="/history">History</NavLink>
             </NavSection>
             <ButtonSection>
                 <ImageButton>Connect Wallet</ImageButton>
@@ -48,7 +48,7 @@ const NavSection = styled.section`
     }
 `
 
-const NavLink = styled(Link)`
+const NavLink = styled(Link)<{select: string}>`
     text-decoration: none;
     position: relative;
     color: white;
@@ -65,7 +65,7 @@ const NavLink = styled(Link)`
         line-height: 35px;
         content: attr(title);
         border-bottom: 2px solid white;
-        max-width: ${({ispath}) => ispath === 'true' ? '100%' : 0};
+        max-width: ${(props) => props.select === 'true' ? '100%' : 0};
         overflow: hidden;
         transition: all 0.2s;
     }

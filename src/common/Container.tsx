@@ -1,6 +1,7 @@
+import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
-function Contianer({children}) {
+function Contianer({children} : PropsWithChildren) {
     return (
         <Component>
             {children}
