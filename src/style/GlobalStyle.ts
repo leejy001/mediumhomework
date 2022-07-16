@@ -23,7 +23,7 @@ export default createGlobalStyle`
     height: 100vh;
     margin: auto;
     padding-top: 50px;
-    background: linear-gradient(90deg, rgba(33, 78, 169, 0.8) 0%, rgba(18, 115, 218, 0.85) 35%, rgba(33, 78, 169, 0.8) 100%);
+    background: linear-gradient(90deg, rgba(45, 80, 22, 0.8) 0%, rgba(90, 160, 44, 0.85) 35%, rgba(170, 222, 135, 0.8) 100%);
   }
   
   p {

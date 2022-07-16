@@ -82,7 +82,7 @@ const ButtonSection = styled.section`
 const ImageButton = styled.button`
     border: none;
     border-radius: 4px;
-    background: #003893 url('/assets/i-connect.6803b5a2.svg') no-repeat 10% 50%;
+    background: ${({theme}) => theme.color.COLOR_DARK_GREEN} url('/assets/i-connect.6803b5a2.svg') no-repeat 10% 50%;
     color: white;
     width: 180px;
     height: 50px;

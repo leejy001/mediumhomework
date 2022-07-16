@@ -11,7 +11,7 @@ function Tab () {
 export default Tab
 
 const TabContainer = styled.div`
-    background-color: #f5f5f5;
+    background-color: ${({theme}) => theme.color.COLOR_GRAY};
     z-index: 1000;
     height: 50px;
     line-height: 50px;
@@ -21,7 +21,7 @@ const TabContainer = styled.div`
     position: fixed;
     width: 100%;
     a {
-        color: #0d7fe9;
+        color: ${({theme}) => theme.color.COLOR_GREEN_ONE};
         text-decoration-line: none;
         :hover {
             text-decoration-line: underline; 
