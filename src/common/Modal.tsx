@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 type PropsType = {
@@ -20,7 +19,7 @@ function Index({
   children
 }: React.PropsWithChildren<PropsType>) {
 
-    const handlePayModalOff = (e: any) => {
+    const handlePayModalOff = (e: React.MouseEvent) => {
         if (e.target !== e.currentTarget) return;
         else handleToggle()
     };
