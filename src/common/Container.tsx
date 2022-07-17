@@ -12,8 +12,7 @@ function Contianer({children} : PropsWithChildren) {
 export default Contianer
 
 const Component = styled.section`
-    margin: auto;
+    margin: 0 auto;
     width: 1180px;
-    height: 100vh;
     padding: 100px 50px 40px;
 `

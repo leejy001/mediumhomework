@@ -30,11 +30,12 @@ export default createGlobalStyle`
   }
 
   #root {
+    min-height: 100vh;
     background: linear-gradient(90deg, rgba(45, 80, 22, 0.8) 0%, rgba(90, 160, 44, 0.85) 35%, rgba(170, 222, 135, 0.8) 100%);
   }
 
   body {
-    background: url('/assets/bg4.0eedf2cc.png') no-repeat fixed center/cover;
+    background: url('/assets/bg-green-web.png') no-repeat fixed center/cover;
   }
 
   ul, li {
