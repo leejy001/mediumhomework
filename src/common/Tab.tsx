@@ -1,9 +1,12 @@
 import styled from 'styled-components'
 
 function Tab () {
+
+    const helpCenterHref = "https://help.kstadium.io/hc/en-us"
+
     return (
         <TabContainer>
-            If you want to convert more than 20,000 KOK, please contact us through the <a href="https://help.kstadium.io/hc/en-us" target="_blank" rel="noreferrer">K STADIUM Help Center <img src="/assets/i-window.svg" alt="go to help center"/></a> before proceeding with the conversion.
+            If you want to convert more than 20,000 KOK, please contact us through the <a href={helpCenterHref} target="_blank" rel="noreferrer">K STADIUM Help Center <img src="/assets/i-window.svg" alt="go to help center"/></a> before proceeding with the conversion.
         </TabContainer>
     )
 }

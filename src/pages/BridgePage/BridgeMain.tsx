@@ -29,10 +29,13 @@ type PropType = {
 }
 
 function BridgeMain({setCurrent} : PropType) {
+    const Destination = "Recipient Wallet should be connected. Select the Chain to receive the converted coins."
+
     const [coinToggle, coinToggleIsOn] = useToggle(false)
     const [coin, setCoin] = useState<string>('')
     
     const [fromToggle, fromToggleIsOn] = useToggle(false)
+    const [dropDown, setDropDown] = useState<string>('')
 
     useEffect(() => {
         if(coin !== '') setCurrent(2)
@@ -47,19 +50,38 @@ function BridgeMain({setCurrent} : PropType) {
                 </FormInput>
                 <MultiFormInput>
                     <FormInput title="From">
-                        <DropDown base="Select a chain" info={Coin} onToggle={fromToggleIsOn} isNone={coin === ''} />
+                        <DropDown
+                            id="from"
+                            base="Select a chain" 
+                            info={Coin} onToggle={fromToggleIsOn} 
+                            dropDown={dropDown} 
+                            setDropDown={setDropDown} 
+                            isNone={coin === ''} />
                     </FormInput>
                     <Arrow />
                     <FormInput title="To">
-                        <DropDown base="Select a chain" isDisabled={true} isNone={false} />
+                        <DropDown
+                            id="to"
+                            base="Select a chain"  
+                            dropDown={dropDown} 
+                            setDropDown={setDropDown} 
+                            isDisabled={true} 
+                            isNone={false} />
                     </FormInput>
                 </MultiFormInput>
                 <FormInput title="Destination">
-                    <Input type="number" placeholder="Recipient Wallet should be connected. Select the Chain to receive the converted coins." isReadOnly={true}/>
+                    <Input type="number" placeholder={Destination} isReadOnly={true}/>
                 </FormInput>
                 <FormInput title="Amount">
                     <Input type="number" placeholder="Amount" min={1} value={''} />
-                    <DropDown base="Direct input" info={Percent} width={27.5} isNone={false}/>
+                    <DropDown 
+                        id="direct"
+                        base="Direct input" 
+                        info={Percent} 
+                        dropDown={dropDown} 
+                        setDropDown={setDropDown} 
+                        width={27.5} 
+                        isNone={false} />
                 </FormInput>
                 <FormDescription />
                 <FormButton disabled>Convert Now</FormButton>

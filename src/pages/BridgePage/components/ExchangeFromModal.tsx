@@ -6,6 +6,8 @@ type PropTypes = {
 }
 
 function ExchangeFromModal({handleToggle} : PropTypes) {
+    const metamaskHref = "https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn"
+
     return (
         <Modal width={370} title={'Connect Wallet'} subTitle={'Please connect your wallet to the chain you chose.'} handleToggle={handleToggle} handleOkClick={handleToggle} isDisabled={true}>
             <WalletWrapper>
@@ -16,7 +18,7 @@ function ExchangeFromModal({handleToggle} : PropTypes) {
                 <Hint>
                     You don't have Wallet? Download one now
                 </Hint>
-                <DownLoadLink href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn" target="_blank" rel="noreferrer">
+                <DownLoadLink href={metamaskHref} target="_blank" rel="noreferrer">
                     <img src="/assets/i-download.png" alt="download icon" width={14}/>
                     <p>Download</p>
                 </DownLoadLink>

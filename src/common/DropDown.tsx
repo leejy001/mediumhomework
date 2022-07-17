@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { SetStateAction, useCallback, useEffect, useRef } from "react";
 import styled, {css} from "styled-components"
 import { useOutsideClick } from "../hooks/useOutsideClick";
 import { slideInDown } from "../style/Animation";
@@ -9,15 +9,18 @@ type ListType = {
 }
 
 type PropTypes = {
+    id: string
     base: string
     info?: ListType[]
     isDisabled?: boolean
     width?: number
     isNone: boolean
+    dropDown: string
+    setDropDown: React.Dispatch<SetStateAction<string>>
     onToggle?: () => void
 }
 
-function DropDown({base, info, isDisabled, width, isNone, onToggle}: PropTypes) {
+function DropDown({id, base, info, isDisabled, width, isNone, dropDown, setDropDown, onToggle}: PropTypes) {
     const dropdownRef = useRef<HTMLUListElement>(null)
 
     const [isActive, setIsActive] = useOutsideClick(dropdownRef, false);
@@ -25,7 +28,12 @@ function DropDown({base, info, isDisabled, width, isNone, onToggle}: PropTypes) 
     const onClickBtn = useCallback((event: React.MouseEvent) => {
         event?.stopPropagation()
         setIsActive(prev => !prev);
-    }, [setIsActive]);
+        setDropDown(id)
+    }, [id, setDropDown, setIsActive]);
+
+    useEffect(() => {
+        if(dropDown !== id) setIsActive(false) 
+    }, [dropDown, id, setIsActive])
     
     return (
         <DropDownContainer width={width}>
