@@ -98,6 +98,7 @@ const DropDownButton = styled.button<{isActive: boolean}>`
     border-radius: 2px;
     border: 1px solid ${({theme}) => theme.color.COLOR_GREEN_THREE};
     color: ${({theme}) => theme.color.COLOR_GREEN_ONE};
+    cursor: pointer;
     padding: 12px 16px;
     width: 100%;
     height: 100%;
@@ -111,6 +112,8 @@ const DropDownButton = styled.button<{isActive: boolean}>`
     }
     :disabled {
         opacity: 0.5;
+        cursor: default;
+        pointer-events: none;
     }
     :active {
         color: white;
