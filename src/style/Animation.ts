@@ -29,7 +29,7 @@ export const move = keyframes`
 export const fadeInUp = keyframes`
     0% {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(50px);
     }
     100% {
         opacity: 1;
@@ -40,7 +40,7 @@ export const fadeInUp = keyframes`
 export const fadeInDown = keyframes`
     0% {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-50px);
     }
     100% {
         opacity: 1;
@@ -51,7 +51,7 @@ export const fadeInDown = keyframes`
 export const fadeInLeft = keyframes`
     0% {
         opacity: 0;
-        transform: translateX(20px);
+        transform: translateX(50px);
     }
     100% {
         opacity: 1;
@@ -62,10 +62,20 @@ export const fadeInLeft = keyframes`
 export const fadeInRight = keyframes`
     0% {
         opacity: 0;
-        transform: translateX(-20px);
+        transform: translateX(-50px);
     }
     100% {
         opacity: 1;
         transform: translateX(0);
+    }
+`
+
+export const slideInDown = keyframes`
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
     }
 `

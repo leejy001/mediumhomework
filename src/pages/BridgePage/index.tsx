@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import Contianer from "../../common/Container";
 import { fadeInUp } from "../../style/Animation";
@@ -5,12 +6,14 @@ import BridgeMain from "./BridgeMain";
 import BridgeTutorial from "./BridgeTutorial";
 
 function Index() {
+    const [current, setCurrent] = useState<number>(1)
+
     return (
         <Contianer>
             <MainTitle><span>Opening a new way between cryptocurrencies.</span></MainTitle>
             <BridgeInfoWrapper>
-                <BridgeTutorial />
-                <BridgeMain />
+                <BridgeTutorial current={current}/>
+                <BridgeMain setCurrent={setCurrent} />
             </BridgeInfoWrapper>
         </Contianer>
     )
@@ -21,7 +24,7 @@ export default Index;
 const MainTitle = styled.div`
     padding: 0 16px;
     margin-bottom: 32px; 
-    animation: ${fadeInUp} 2s ease;
+    animation: ${fadeInUp} 1s ease;
     span {
         position: relative;
         margin-left: 262px;

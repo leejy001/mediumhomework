@@ -1,11 +1,15 @@
+import { SetStateAction, useEffect, useState } from "react"
 import styled from "styled-components"
+import useToggle from "../../hooks/useToggle"
+import { fadeInLeft } from "../../style/Animation"
 import DropDown from "../../common/DropDown"
 import Input from "../../common/Input"
-import { fadeInLeft } from "../../style/Animation"
 import Arrow from "./components/Arrow"
 import CoinButton from "./components/CoinButton"
 import FormDescription from "./components/FormDescription"
 import FormInput from "./components/FormInput"
+import CoinSelectModal from "./components/CoinSelectModal"
+import ExchangeFromModal from "./components/ExchangeFromModal"
 
 const Percent = [
     {id: 1, content: 'MAX'},
@@ -20,32 +24,48 @@ const Coin = [
     {id: 1, content: 'Ethereum'}
 ]
 
-function BridgeMain() {
+type PropType = {
+    setCurrent: React.Dispatch<SetStateAction<number>>
+}
+
+function BridgeMain({setCurrent} : PropType) {
+    const [coinToggle, coinToggleIsOn] = useToggle(false)
+    const [coin, setCoin] = useState<string>('')
+    
+    const [fromToggle, fromToggleIsOn] = useToggle(false)
+
+    useEffect(() => {
+        if(coin !== '') setCurrent(2)
+        else setCurrent(1)
+    }, [coin, setCurrent])
+    
     return (
         <MainContainer>
             <MainFormContainer>
                 <FormInput title="Asset">
-                    <CoinButton />
+                    <CoinButton coin={coin} coinToggle={coinToggle} onToggle={coinToggleIsOn} />
                 </FormInput>
                 <MultiFormInput>
                     <FormInput title="From">
-                        <DropDown base="Select a chain" info={Coin} />
+                        <DropDown base="Select a chain" info={Coin} onToggle={fromToggleIsOn} isNone={coin === ''} />
                     </FormInput>
                     <Arrow />
                     <FormInput title="To">
-                        <DropDown base="Select a chain" isDisabled={true} />
+                        <DropDown base="Select a chain" isDisabled={true} isNone={false} />
                     </FormInput>
                 </MultiFormInput>
                 <FormInput title="Destination">
                     <Input type="number" placeholder="Recipient Wallet should be connected. Select the Chain to receive the converted coins." isReadOnly={true}/>
                 </FormInput>
                 <FormInput title="Amount">
-                    <Input type="number" placeholder="Amount" min={1} value="" />
-                    <DropDown base={'Direct input'} info={Percent} width={27.5}/>
+                    <Input type="number" placeholder="Amount" min={1} value={''} />
+                    <DropDown base="Direct input" info={Percent} width={27.5} isNone={false}/>
                 </FormInput>
                 <FormDescription />
                 <FormButton disabled>Convert Now</FormButton>
             </MainFormContainer>
+            {coinToggle && <CoinSelectModal handleToggle={coinToggleIsOn} coin={coin} setCoin={setCoin}/>}
+            {fromToggle && <ExchangeFromModal handleToggle={fromToggleIsOn} />}
         </MainContainer>
     )
 }
@@ -57,7 +77,7 @@ const MainContainer = styled.main`
     height: auto;
     padding: 0 8px;
     background: transparent;
-    animation: ${fadeInLeft} 2s ease;
+    animation: ${fadeInLeft} 1s ease;
 `
 
 const MainFormContainer = styled.div`
@@ -80,7 +100,7 @@ const FormButton = styled.button`
     font-weight: 600;
     font-size: 15px;
     border-radius: 4px;
-    box-shadow: 0 1px 16px rgb(13 127 233 / 40%);
+    box-shadow: 0 1px 16px rgba(13, 127, 233, 0.4);
     background-color: ${({theme}) => theme.color.COLOR_GREEN_ONE};
     border: none;
     color: white;

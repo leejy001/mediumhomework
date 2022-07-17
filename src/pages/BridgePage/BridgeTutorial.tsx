@@ -1,9 +1,12 @@
-import { useState } from "react"
 import styled, {css} from "styled-components"
 import { fadeInRight, pulse } from "../../style/Animation"
 
-function BridgeTutorial() {
-    const [current, setCurrent] = useState<number>(1)
+type PropType = {
+    current: number
+}
+
+function BridgeTutorial({current}: PropType) {
+
     return (
         <TutorialContainer>
             <TutorialItem isCurrent={current === 1}>
@@ -43,7 +46,7 @@ const TutorialContainer = styled.aside`
     display: flex;
     flex-direction: column;
     animation-delay: 100ms;
-    animation: ${fadeInRight} 2s ease;
+    animation: ${fadeInRight} 1s ease;
 `
 
 const TutorialItem = styled.div<{isCurrent: boolean}>`

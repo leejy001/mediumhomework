@@ -38,7 +38,7 @@ const HaederContainer = styled.header`
     justify-content: space-between;
     height: 90px;
     width: 100%;
-    animation: ${fadeInDown} 0.5s;
+    animation: ${fadeInDown} 0.5s ease;
 `
 
 const NavSection = styled.section`

@@ -1,6 +1,7 @@
 import { useCallback, useRef } from "react";
-import styled from "styled-components"
+import styled, {css} from "styled-components"
 import { useOutsideClick } from "../hooks/useOutsideClick";
+import { slideInDown } from "../style/Animation";
 
 type ListType = {
     id: number
@@ -12,11 +13,13 @@ type PropTypes = {
     info?: ListType[]
     isDisabled?: boolean
     width?: number
+    isNone: boolean
+    onToggle?: () => void
 }
 
-function DropDown({base, info, isDisabled, width}: PropTypes) {
+function DropDown({base, info, isDisabled, width, isNone, onToggle}: PropTypes) {
     const dropdownRef = useRef<HTMLUListElement>(null)
-    
+
     const [isActive, setIsActive] = useOutsideClick(dropdownRef, false);
 
     const onClickBtn = useCallback((event: React.MouseEvent) => {
@@ -26,14 +29,16 @@ function DropDown({base, info, isDisabled, width}: PropTypes) {
     
     return (
         <DropDownContainer width={width}>
-            <DropDownButton isActive={isActive} onClick={onClickBtn} disabled={isDisabled}><span>{base}</span><img src="/assets/i-carot.png" alt="caret icon" width={18} /></DropDownButton>
+            <DropDownButton isActive={isActive} onClick={onClickBtn} disabled={isDisabled}>
+                <span>{base}</span><img src="/assets/i-carot.png" alt="caret icon" width={18} />
+            </DropDownButton>
             {isActive && (
-                <ul ref={dropdownRef}>
+                <InfoWrapper ref={dropdownRef} >
                     { info && info.map(item => {
-                        if (item.content !== 'divide') return <InfoItem key={item.id} isDivide={item.content}>{item.content}</InfoItem>
-                        else return <li className="divider"/>
+                        if (item.content !== 'divide') return <InfoItem key={item.id} isNone={isNone} onClick={onToggle}>{item.content}</InfoItem>
+                        else return <li key={item.id} className="divider"/>
                     })}
-                </ul>
+                </InfoWrapper>
             )}
         </DropDownContainer>
     )
@@ -44,30 +49,37 @@ export default DropDown
 const DropDownContainer = styled.div<{width?: number}>`
     width: ${({width}) => width ? `${width}%` : '100%'};
     z-index: 100;
-    ul {
-        margin-top: 2px;
-        padding: 10px;
-        text-align: left;
-        background-color: white;
-        border-radius: 2px;
-        box-shadow: 0 0 2px rgb(13 127 233 / 40%);
-        width: 100%;
-        .divider {
-            border-top: 1px solid ${({theme}) => theme.color.COLOR_GREEN_THREE};
-        }
+`
+
+const InfoWrapper = styled.ul`
+    animation: ${slideInDown} 0.5s ease;
+    padding: 5px;
+    text-align: left;
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 0 0 2px rgba(13, 127, 233, 0.4);
+    width: 100%;
+    .divider {
+        margin: 5px auto;
+        border-top: 1px solid ${({theme}) => theme.color.COLOR_GREEN_THREE};
     }
 `
 
-const InfoItem = styled.li<{isDivide: string}>`
+const InfoItem = styled.li<{isNone: boolean}>`
+    ${({isNone}) => isNone ? css`
+        cursor: not-allowed;
+        color: gray;
+    ` : css`
+        cursor: default;
+        :hover {
+            background: ${({theme}) => theme.color.COLOR_LIGHT_GREEN};
+            color: ${({theme}) => theme.color.COLOR_GREEN_ONE};
+        }
+    `}
     height: 28px;
     line-height: 28px;
     font-size: 14px;
     padding: 0 10px;
-    margin: 5px auto;
-    :hover {
-        background: ${({theme}) => theme.color.COLOR_LIGHT_GREEN};
-        color: ${({theme}) => theme.color.COLOR_GREEN_ONE};
-    }
 `
 
 const DropDownButton = styled.button<{isActive: boolean}>`

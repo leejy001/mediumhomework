@@ -1,17 +1,21 @@
+import React from "react"
 import styled from "styled-components"
 
 type PropTypes = {
     type: string
     min?: number
-    value?: string
     placeholder: string
+    value?: string
     isReadOnly?: boolean
 }
 
-function Input({type, min, value, placeholder, isReadOnly}: PropTypes) {
+function Input({type, min, placeholder, value, isReadOnly}: PropTypes) {
+    const onChange = () => {
+        // do something...
+    }
     return (
         <InputContainer>
-            <InputArea type={type} placeholder={placeholder} min={min} value={value} readOnly={isReadOnly}/>
+            <InputArea type={type} placeholder={placeholder} min={min} value={value} readOnly={isReadOnly} onChange={onChange}/>
         </InputContainer>
     )
 }

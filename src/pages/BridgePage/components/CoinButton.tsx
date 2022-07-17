@@ -1,20 +1,27 @@
 import styled from "styled-components"
 
-function CoinButton() {
+type PropTypes = {
+    coin: string
+    coinToggle: boolean
+    onToggle: () => void
+}
+
+function CoinButton({coin, coinToggle, onToggle}: PropTypes) {
+
     return (
-        <ButtonContainer>
-            <span>Select a coin</span><img src="/assets/i-carot.png" alt="caret icon" width={18} />
+        <ButtonContainer isToggle={coinToggle} onClick={onToggle}>
+            <span>{coin ? coin : 'Select a coin'}</span><img src="/assets/i-carot.png" alt="caret icon" width={18} />
         </ButtonContainer>
     )
 }
 
 export default CoinButton
 
-const ButtonContainer = styled.button`
+const ButtonContainer = styled.button<{isToggle: boolean}>`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: ${({isToggle, theme}) => isToggle ? `${theme.color.COLOR_LIGHT_GREEN}`: 'white'};
     border-radius: 2px;
     border: 1px solid ${({theme}) => theme.color.COLOR_GREEN_THREE};
     color: ${({theme}) => theme.color.COLOR_GREEN_ONE};
