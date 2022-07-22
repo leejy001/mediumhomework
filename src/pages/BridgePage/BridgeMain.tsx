@@ -37,6 +37,10 @@ function BridgeMain({setCurrent} : PropType) {
     const [fromToggle, fromToggleIsOn] = useToggle(false)
     const [dropDown, setDropDown] = useState<string>('')
 
+    const handleFromToggle = () => {
+        if(coin !== '') fromToggleIsOn() 
+    }
+
     useEffect(() => {
         if(coin !== '') setCurrent(2)
         else setCurrent(1)
@@ -53,7 +57,7 @@ function BridgeMain({setCurrent} : PropType) {
                         <DropDown
                             id="from"
                             base="Select a chain" 
-                            info={Coin} onToggle={fromToggleIsOn} 
+                            info={Coin} onToggle={handleFromToggle} 
                             dropDown={dropDown} 
                             setDropDown={setDropDown} 
                             isNone={coin === ''} />

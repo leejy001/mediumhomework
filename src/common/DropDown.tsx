@@ -43,7 +43,7 @@ function DropDown({id, base, info, isDisabled, width, isNone, dropDown, setDropD
             {isActive && (
                 <InfoWrapper ref={dropdownRef} >
                     { info && info.map(item => {
-                        if (item.content !== 'divide') return <InfoItem key={item.id} isNone={isNone} onClick={onToggle}>{item.content}</InfoItem>
+                        if (item.content !== 'divide') return <InfoItem key={item.id} isNone={isNone} onClick={onToggle} >{item.content}</InfoItem>
                         else return <li key={item.id} className="divider"/>
                     })}
                 </InfoWrapper>
