@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from "react"
+import { lazy, SetStateAction, Suspense, useEffect, useState } from "react"
 import styled from "styled-components"
 import useToggle from "../../hooks/useToggle"
 import { fadeInLeft } from "../../style/Animation"
@@ -8,8 +8,6 @@ import Arrow from "./components/Arrow"
 import CoinButton from "./components/CoinButton"
 import FormDescription from "./components/FormDescription"
 import FormInput from "./components/FormInput"
-import CoinSelectModal from "./components/CoinSelectModal"
-import ExchangeFromModal from "./components/ExchangeFromModal"
 
 const Percent = [
     {id: 1, content: 'MAX'},
@@ -23,6 +21,9 @@ const Percent = [
 const Coin = [
     {id: 1, content: 'Ethereum'}
 ]
+
+const CoinSelectModal = lazy(() => import('./components/CoinSelectModal'))
+const ExchangeFromModal = lazy(() => import('./components/ExchangeFromModal'))
 
 type PropType = {
     setCurrent: React.Dispatch<SetStateAction<number>>
@@ -90,8 +91,10 @@ function BridgeMain({setCurrent} : PropType) {
                 <FormDescription />
                 <FormButton disabled>Convert Now</FormButton>
             </MainFormContainer>
-            {coinToggle && <CoinSelectModal handleToggle={coinToggleIsOn} coin={coin} setCoin={setCoin}/>}
-            {fromToggle && <ExchangeFromModal handleToggle={fromToggleIsOn} />}
+            <Suspense>
+                {coinToggle && <CoinSelectModal handleToggle={coinToggleIsOn} coin={coin} setCoin={setCoin}/>}
+                {fromToggle && <ExchangeFromModal handleToggle={fromToggleIsOn} />}
+            </Suspense> 
         </MainContainer>
     )
 }
